@@ -2,6 +2,13 @@ class Reminder < ApplicationRecord
   belongs_to :user
   after_save :schedule
 
+  validates :title,     presence: true
+  validates :month_day, presence: true
+  validates :day_time,  presence: true
+  validates :user_id,   presence: true
+
+  validates :month_day, :inclusion => { :in => -31..31 }  
+
   def schedule
     #this method handles the case that reminder should be sent this month
     #i.e that it is created prior its firing time this month_day
