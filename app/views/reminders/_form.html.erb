@@ -21,14 +21,29 @@
     <%= form.text_area :description %>
   </div>
 
-  <div class="field">
-    <%= form.label :month_day %>
-    <%= form.number_field :month_day %>
-  </div>
+  <table>
+    <tr>
+      <td>
+        <div class="field">
+          <%= form.label :month_day %>
+          <%= form.number_field :month_day, min: 1 , max:31 %>
+        </div>
+      </td>
+
+      <td>
+        <input type="radio" id="pos" name="direction" value="positive" selected="true" checked>
+        <label for="pos">From Start Of Month</label><br>
+      </td>
+      <td>
+        <input type="radio" id="meg" name="direction" value="negative">
+        <label for="neg">From End Of Month</label>
+      </td>
+   </tr>
+  </table>
 
   <div class="field">
     <%= form.label :day_time %>
-    <%= form.time_select :day_time %>
+    <%= form.time_select :day_time%>
   </div>
 
   <div class="actions">

@@ -22,6 +22,9 @@ class RemindersController < ApplicationController
   # POST /reminders.json
   def create
     @reminder = Reminder.new(reminder_params)
+
+    (@reminder.month_day = @reminder.month_day * -1) if params['direction'] == 'negative'
+
     @reminder.user = current_user
 
     respond_to do |format|
