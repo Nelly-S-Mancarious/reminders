@@ -21,25 +21,20 @@
     <%= form.text_area :description %>
   </div>
 
-  <table>
-    <tr>
-      <td>
-        <div class="field">
-          <%= form.label :month_day %>
-          <%= form.number_field :month_day, min: 1 , max:31 %>
-        </div>
-      </td>
 
-      <td>
-        <input type="radio" id="pos" name="direction" value="positive" selected="true" checked>
-        <label for="pos">From Start Of Month</label><br>
-      </td>
-      <td>
-        <input type="radio" id="meg" name="direction" value="negative">
-        <label for="neg">From End Of Month</label>
-      </td>
-   </tr>
-  </table>
+
+  <fieldset>
+    <legend> <%= form.label :month_day %> </legend>
+    <div class="field">
+
+      <%= form.number_field :month_day, min: 1 , max:31 %>
+    </div>
+    <label> <input type="radio" id="pos" name="direction" value="positive" selected="true" checked> From Start Of Month </label>
+    <label> <input type="radio" id="meg" name="direction" value="negative" > From End Of Month </label>
+    <label>To select the end of month put 1 in the text box and choose the "From End of Month" radio button </label>
+    <label>To select the second day from end of month put 2 in the text box and choose the "From End of Month" radio button </label>
+    <label>and so on</label>
+  </fieldset>
 
   <div class="field">
     <%= form.label :day_time %>

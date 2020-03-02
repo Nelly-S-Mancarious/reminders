@@ -19,5 +19,13 @@ RSpec.describe User, type: :model do
       u = user.save
       expect(u).to eq(true)
     end
+
+    it 'can be saved' do
+      user = User.new(email: "test@test.com", password: "password")
+      u = user.save
+      user1 = User.new(email: "test@test.com", password: "password")
+      u = user1.save
+      expect(u).to eq(false)
+    end
   end
 end

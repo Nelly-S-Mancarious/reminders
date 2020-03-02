@@ -11,13 +11,16 @@
 </p>
 
 <p>
+  <% days = @reminder.month_day %>
+  <% days = ((days = days * -1).to_s + " days From End of Month ") if days < 0 %>
+
   <strong>Month day:</strong>
-  <%= @reminder.month_day %>
+  <%= days %>
 </p>
 
 <p>
   <strong>Day time:</strong>
-  <%= @reminder.day_time %>
+  <%= @reminder.day_time.strftime("%H:%M:%S %z") %>
 </p>
 
 <p>

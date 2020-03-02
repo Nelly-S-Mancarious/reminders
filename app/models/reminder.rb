@@ -7,7 +7,7 @@ class Reminder < ApplicationRecord
   validates :day_time,  presence: true
   validates :user_id,   presence: true
 
-  validates :month_day, :inclusion => { :in => -31..31 }  
+  validates :month_day, :inclusion => { :in => -31..31 }
 
   def schedule
     #this method handles the case that reminder should be sent this month
