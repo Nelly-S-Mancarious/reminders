@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ReminderMailer, type: :mailer do
   describe "user reminder" do
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { FactoryBot.create(:user, email: "test@test.com", password: "password") }
 
 
     it "#notify_users should send email" do

@@ -10,8 +10,8 @@ RSpec.describe RemindersController, type: :controller do
 
   context "Get #show" do
     it 'can not be accessed without login' do
-      user = User.create!(email: "test@test.com", password: "password")
-      reminder = Reminder.create!(title: "title", month_day: 2, day_time: "06:40:00", user_id: user.id)
+      user = FactoryBot.create(:user, email: "test@test.com", password: "password")
+      reminder = FactoryBot.create(:reminder, title: "title", month_day: 2, day_time: "06:40:00", user_id: user.id)
       get :show, params: {id: reminder.to_param}
       expect(response.success?).to eq(false)
     end
@@ -20,8 +20,7 @@ RSpec.describe RemindersController, type: :controller do
   context "logged user" do
 
     before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      @user = FactoryBot.create(:user)
+      @user = FactoryBot.create(:user, email: "test@test.com", password: "password")
       sign_in @user
     end
 
@@ -34,7 +33,7 @@ RSpec.describe RemindersController, type: :controller do
 
     context "Get #show" do
       it 'can be accessed after login' do
-        reminder = Reminder.create!(title: "title", month_day: 2, day_time: "06:40:00", user_id: @user.id)
+        reminder = FactoryBot.create(:reminder, title: "title", month_day: 2, day_time: "06:40:00", user_id: @user.id)
         get :show, params: {id: reminder.to_param}
         expect(response.success?).to eq(true)
       end
@@ -42,7 +41,7 @@ RSpec.describe RemindersController, type: :controller do
 
     context "Post # Delete" do
       it 'can be delete after login' do
-        reminder = Reminder.create!(title: "title", month_day: 2, day_time: "06:40:00", user_id: @user.id)
+        reminder = FactoryBot.create(:reminder, title: "title", month_day: 2, day_time: "06:40:00", user_id: @user.id)
         delete :destroy, params: {id: reminder.to_param}
         expect(Reminder.all.count).to eq(0)
       end

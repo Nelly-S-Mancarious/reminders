@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :user do
-    email {"test@test.com"}
-    password {"password"}
+  end
+
+  factory :reminder do
   end
 end
